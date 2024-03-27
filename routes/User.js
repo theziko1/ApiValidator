@@ -8,7 +8,7 @@ import {
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 
-const router = Router();
+const router = Router(); 
 
 // Register
 router.post("/register", async (req, res) => {
