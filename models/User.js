@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import { Schema, mongoose } from "mongoose";
+import Joi from 'joi'
 
 const UserSchema = new Schema({
   username: {
@@ -64,7 +65,7 @@ function validateLoginUser(obj) {
   return schema.validate(obj);
 }
 const User = mongoose.model("User", UserSchema);
-module.exports = {
+export  {
   User,
   validateRegisterUser,
   validateUpdateUser,

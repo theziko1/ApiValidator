@@ -1,23 +1,17 @@
 import express from "express";
-import { config } from "dotenv"
-import { connect } from "mongoose";
-import userRouter from "./routes/User.js"
+import { config } from "dotenv";
+import { connectToDatabase } from "./database.js";
+import userRouter from "./routes/User.js";
 
-config()
+// connectToDatabase();
+config();
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT;
 
-const app = express()
+const app = express();
 
-app.use(express.json())
-app.use("/",userRouter)
+app.use(express.json());
+app.use("/", userRouter);
 
-connect(process.env.MONGO_URL)
-.then(()=>{
-    console.log("connected to the database")
-}) 
-.catch ((error)=> {
-    console.log("connexion failed",error) 
-})
 
-export default app
+export default app;

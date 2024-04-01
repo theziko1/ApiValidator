@@ -20,8 +20,6 @@ connect(process.env.MONGO_URL)
     console.log("connexion failed",error) 
 })
 
-
-
 app.listen(PORT,()=>{
     console.log(`🚀 ~ server listen ~ in ${PORT} `)   
 })
