@@ -1,3 +1,4 @@
+import Joi from "joi";
 import { Schema, model } from "mongoose";
 
 const UserSchema = new Schema({
@@ -44,8 +45,7 @@ function validateUpdateUser(obj) {
   const schema = Joi.object({
     email: Joi.string().trim().email().min(5).max(100),
     username: Joi.string().trim().alphanum().min(3).max(200),
-    password: Joi.string().trim().alphanum().min(3).max(200),
-    age: Joi.number().trim().min(3).max(200),
+    password: Joi.string().trim().alphanum().min(3).max(200)
   });
 
   return schema.validate(obj);
