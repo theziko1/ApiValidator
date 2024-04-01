@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import Joi from "joi";
+import { mongoose, Schema, model } from "mongoose";
 
 const UserSchema = new Schema({
   username: {
@@ -30,7 +31,6 @@ function validateRegisterUser(obj) {
     email: Joi.string().trim().email().min(5).max(100).required(),
     username: Joi.string().trim().alphanum().min(3).max(200).required(),
     password: Joi.string().trim().alphanum().min(3).max(200).required(),
-    age: Joi.number().trim().min(3).max(200).required(),
   });
 
   return schema.validate(obj);
@@ -45,7 +45,7 @@ function validateUpdateUser(obj) {
     email: Joi.string().trim().email().min(5).max(100),
     username: Joi.string().trim().alphanum().min(3).max(200),
     password: Joi.string().trim().alphanum().min(3).max(200),
-    age: Joi.number().trim().min(3).max(200),
+    age: Joi.number().min(3).max(200),
   });
 
   return schema.validate(obj);
@@ -64,7 +64,7 @@ function validateLoginUser(obj) {
   return schema.validate(obj);
 }
 const User = mongoose.model("User", UserSchema);
-module.exports = {
+export {
   User,
   validateRegisterUser,
   validateUpdateUser,
