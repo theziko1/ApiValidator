@@ -25,11 +25,11 @@ router.post("/register", async (req, res) => {
       email,
       password: hashPassword,
     });
-    res
+     return res
       .status(201)
       .json({ success: true, message: "User registered successfully" });
   } catch (error) {
-    res
+    return res
       .status(500)
       .json({ success: false, error: "User not registered " + error });
   }
@@ -82,14 +82,14 @@ router.post("/login", async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       maxAge: 86400000,
     });
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "login successfully",
       token: token,
       data: userLogin,
     });
   } catch (error) {
-    res.status(500).json({ success: false, error: "login failed " + error });
+    return res.status(500).json({ success: false, error: "login failed " + error });
   }
 });
 
@@ -97,13 +97,13 @@ router.post("/login", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const users = await User.find();
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Users fetched successfully",
       data: users,
     });
   } catch (error) {
-    res.status(400).json({ success: false, message: "Failed to fetch users" });
+     return res.status(400).json({ success: false, message: "Failed to fetch users" });
   }
 });
 
@@ -112,15 +112,15 @@ router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
-      res.status(404).json({ success: false, message: "User not found" });
+      return res.status(404).json({ success: false, message: "User not found" });
     }
-    res.status(200).json({
+     return res.status(200).json({
       success: true,
       message: "User fetched successfully",
       data: user,
     });
   } catch (error) {
-    res.status(400).json({ success: false, message: "Failed to fetch user " });
+    return res.status(400).json({ success: false, message: "Failed to fetch user " });
   }
 });
 
@@ -137,15 +137,15 @@ router.put("/:id", async (req, res) => {
       runValidators: true,
     });
     if (!user) {
-      res.status(404).json({ success: false, message: "User not found" });
+      return res.status(404).json({ success: false, message: "User not found" });
     }
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "User updated successfully",
       data: user,
     });
   } catch (error) {
-    res.status(400).json({ success: false, message: "Failed to update user" });
+    return res.status(400).json({ success: false, message: "Failed to update user" });
   }
 });
 
@@ -154,13 +154,13 @@ router.delete("/:id", async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     if (!user) {
-      res.status(404).json({ success: false, message: "User not found" });
+     return res.status(404).json({ success: false, message: "User not found" });
     }
-    res
+    return res
       .status(200)
       .json({ success: true, message: "User deleted successfully" });
   } catch (error) {
-    res.status(400).json({ success: false, message: "Failed to delete user" });
+    return res.status(400).json({ success: false, message: "Failed to delete user" });
   }
 });
 
