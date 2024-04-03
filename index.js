@@ -25,3 +25,6 @@ connect(process.env.MONGO_URL)
 app.listen(PORT,()=>{
     console.log(`🚀 ~ server listen ~ in ${PORT} `)   
 })
+
+
+export default app;

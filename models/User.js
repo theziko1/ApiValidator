@@ -1,5 +1,6 @@
 import Joi from "joi";
 import { Schema, model } from "mongoose";
+import Joi from "joi";
 
 const UserSchema = new Schema({
   username: {
@@ -31,7 +32,7 @@ function validateRegisterUser(obj) {
     email: Joi.string().trim().email().min(5).max(100).required(),
     username: Joi.string().trim().alphanum().min(3).max(200).required(),
     password: Joi.string().trim().alphanum().min(3).max(200).required(),
-    age: Joi.number().trim().min(3).max(200).required(),
+    age: Joi.number().min(3).max(200).required(),
   });
 
   return schema.validate(obj);
@@ -45,7 +46,8 @@ function validateUpdateUser(obj) {
   const schema = Joi.object({
     email: Joi.string().trim().email().min(5).max(100),
     username: Joi.string().trim().alphanum().min(3).max(200),
-    password: Joi.string().trim().alphanum().min(3).max(200)
+    password: Joi.string().trim().alphanum().min(3).max(200),
+    age: Joi.number().min(3).max(200),
   });
 
   return schema.validate(obj);
@@ -57,14 +59,14 @@ function validateUpdateUser(obj) {
  */
 function validateLoginUser(obj) {
   const schema = Joi.object({
-    email: Joi.string().trim().email().min(5).max(100).required(),
+    username: Joi.string().trim().alphanum().min(3).max(200),
     password: Joi.string().trim().alphanum().min(3).max(200).required(),
   });
 
   return schema.validate(obj);
 }
-const User = mongoose.model("User", UserSchema);
-module.exports = {
+const User = model("User", UserSchema);
+export {
   User,
   validateRegisterUser,
   validateUpdateUser,
