@@ -5,6 +5,16 @@ ApiValidator est une API RESTful construite avec Express.js qui met l'accent sur
 ## Fonctionnalités
 
 - **Définition des Routes :** Créez des routes au sein de l'application Express pour modéliser différents scénarios de validation, tels que l'inscription des utilisateurs, la soumission de données et les mises à jour des informations utilisateur.
+
+    POST /Register : Pour Créer un nouveaux utilisateur. 
+    POST /Login : Pour faire une authentification d'un utilisateur.
+    GET  /      : Pour Lister toutes les utilisateurs.
+    GET  /:id     : Pour Lister un utilisateur spécifique.
+    PUT  /:id     : Pour Modifier un utilisateur spécifique.
+    DELETE  /:id     : Pour Supprimer un utilisateur spécifique.
+
+
+
 - **Validation des Données :** Utilisez des bibliothèques telles que Joi ou express-validator pour vérifier que les données soumises respectent les critères définis.
 - **Gestion des Erreurs :** Développez des mécanismes de gestion des erreurs pour fournir des réponses appropriées lorsque les données ne passent pas la validation.
 - **Tests Unitaires avec Jest :** Rédigez des tests unitaires complets pour chaque règle de validation et route de l'API afin de confirmer les réponses attendues pour les requêtes valides et invalides.
