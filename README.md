@@ -12,7 +12,7 @@ ApiValidator est une API RESTful construite avec Express.js qui met l'accent sur
 
 ## Installation
 
-1. Clonez le dépôt : `git clone https://github.com/votre-nom-utilisateur/ApiValidator.git`
+1. Clonez le dépôt : `git clone https://github.com/theziko1/ApiValidator.git`
 2. Installez les dépendances : `npm install`
 
 ## Utilisation
